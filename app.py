@@ -281,7 +281,7 @@ if url_modelo:
     st.link_button("🚀 INICIAR PRUEBA DE CAMPO", url_modelo)
 else:
     # Si la caja está vacía, mostramos tu mensaje de guía
-    st.warning("⚠️ Capi, pega el enlace de tu modelo arriba para activar los sensores de prueba.")
+    st.warning("⚠️ Pega el enlace de tu modelo arriba para activar los sensores de prueba.")
 
 st.markdown("---")
 # Pie de página opcional
