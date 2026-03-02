@@ -27,7 +27,7 @@ def check_password():
             else:
                 st.error("❌ Usuario o contraseña incorrectos")
 
-    st.info("Capi, solicita tus credenciales para iniciar la misión.")
+    st.info("solicita tus credenciales para iniciar la misión.")
     
     # ESTA ES LA CLAVE: Detiene la ejecución aquí mismo
     st.stop() 
