@@ -63,6 +63,58 @@ diccionario_retos = {
     "Reto 48: Monitor de Meditación": "Identifica la postura correcta y ojos cerrados para meditar.",
     "Reto 49: Gimnasia Cerebral": "Entrena patrones cruzados de manos y cara.",
     "Reto 50: El Break Obligatorio": "Identifica posturas estáticas prolongadas que sugieran un descanso.",
+
+    # Lote 6: Sostenibilidad
+    "Reto 51: Eco-Clasificador de Residuos": [
+        "Clasificar materiales de reciclaje (Plástico, Papel, Metal).",
+        "Busca objetos de estos tres materiales y prepárate para mostrarlos a la cámara.",
+        "Usa una lata muy abollada o rota. ¿La IA sigue sabiendo que es metal? ¿Por qué crees que ocurre?"
+    ],
+    "Reto 52: Ahorro de Energía": [
+        "Detectar si las luces están encendidas innecesariamente.",
+        "Entrena con la luz del cuarto encendida y luego apagada.",
+        "Abre una cortina para que entre luz solar con el foco apagado. ¿La IA se confunde?"
+    ],
+    "Reto 53: Identificador de Pilas": [
+        "Diferenciar pilas útiles de residuos peligrosos.",
+        "Usa pilas en buen estado y algunas que tengan signos de desgaste o sulfatación.",
+        "¿Es capaz la IA de detectar texturas pequeñas como el óxido?"
+    ],
+    "Reto 54: Consumo Responsable": [
+        "Fomentar el uso de bolsas reutilizables.",
+        "Prepara una bolsa de tela y varias de plástico de supermercado.",
+        "Usa una bolsa de plástico transparente. ¿La IA la detecta o ve lo que hay detrás?"
+    ],
+    "Reto 55: Detector de Desperdicio": [
+        "Analizar el desperdicio de comida en el hogar.",
+        "Entrena con un plato con restos de comida y un plato totalmente limpio.",
+        "Pon una servilleta arrugada sobre el plato vacío. ¿La IA piensa que es comida?"
+    ],
+    "Reto 56: Riego Inteligente": [
+        "Monitorear la humedad de las plantas.",
+        "Usa una maceta con tierra muy seca y luego échale agua para la segunda clase.",
+        "¿Qué tanto cambia el color de la tierra para que la IA note la diferencia?"
+    ],
+    "Reto 57: Fauna Urbana": [
+        "Reconocimiento de biodiversidad local.",
+        "Busca 10 fotos en internet de palomas, gorriones y ardillas para entrenar.",
+        "Muestra un dibujo animado de una ardilla. ¿La IA la reconoce como real?"
+    ],
+    "Reto 58: Cuidado del Agua": [
+        "Detección acústica de fugas de agua.",
+        "Usa el modelo de SONIDO. Graba un grifo goteando y el silencio.",
+        "Haz ruido con una bolsa de plástico. ¿La IA lo confunde con el sonido del agua?"
+    ],
+    "Reto 59: Transporte Verde": [
+        "Identificar elementos de movilidad sostenible.",
+        "Entrena con un casco de bicicleta y un juego de llaves de auto.",
+        "Muestra un casco de construcción o de moto. ¿La IA es capaz de notar la diferencia?"
+    ],
+    "Reto 60: Inspector de Humo": [
+        "Monitoreo visual de contaminación ambiental.",
+        "Usa fotos de cielos limpios y cielos con mucho smog o humo de fábricas.",
+        "Muestra una foto de neblina matutina. ¿La IA da una alerta falsa de contaminación?"
+    ],
 }
 
 # --- INTERFAZ DE USUARIO ---
