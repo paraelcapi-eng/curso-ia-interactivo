@@ -1,50 +1,51 @@
 import streamlit as st
-import streamlit as st
 
-# --- CONFIGURACIÓN DE LOGIN ---
+# 1. Función de Autenticación con Bloqueo
 def check_password():
-    """Retorna True si el usuario ingresó la contraseña correcta."""
-
-    def password_entered():
-        """Revisa si la contraseña coincide."""
-        if st.session_state["username"] in st.secrets["passwords"] and \
-           st.session_state["password"] == st.secrets["passwords"][st.session_state["username"]]:
-            st.session_state["password_correct"] = True
-            del st.session_state["password"]  # No guardar la contraseña en el estado
-            del st.session_state["username"]
-        else:
-            st.session_state["password_correct"] = False
+    """Retorna True si el usuario ingresó la contraseña correcta, de lo contrario detiene la app."""
 
     if "password_correct" not in st.session_state:
-        # Pantalla de Login inicial
-        st.title("🔐 Acceso a IA Academy")
-        st.text_input("Usuario", on_change=password_entered, key="username")
-        st.text_input("Contraseña", type="password", on_change=password_entered, key="password")
-        st.info("Capi, solicita tus credenciales de acceso al administrador.")
-        return False
-    elif not st.session_state["password_correct"]:
-        # Credenciales incorrectas
-        st.title("🔐 Acceso a IA Academy")
-        st.text_input("Usuario", on_change=password_entered, key="username")
-        st.text_input("Contraseña", type="password", on_change=password_entered, key="password")
-        st.error("😕 Usuario o contraseña incorrectos. Intenta de nuevo.")
-        return False
-    else:
-        # Acceso concedido
+        st.session_state["password_correct"] = False
+
+    # Si ya está logueado, regresamos True y no mostramos el login
+    if st.session_state["password_correct"]:
         return True
 
-# --- LÓGICA DE CONTROL ---
-if check_password():
-    # AQUÍ VA TODO EL CÓDIGO QUE YA TENEMOS (Tabs, Retos, Bienvenida, etc.)
-    # Todo lo que escribimos antes debe ir indentado (con un espacio a la derecha) 
-    # dentro de este 'if'.
+    # Pantalla de Login (Solo se ve si no está logueado)
+    st.title("🔐 IA Academy - Acceso Restringido")
     
-    st.sidebar.success("✅ Sesión Iniciada")
-    if st.sidebar.button("Cerrar Sesión"):
-        st.session_state.clear()
-        st.rerun()
+    with st.form("login_form"):
+        user = st.text_input("Usuario")
+        pw = st.text_input("Contraseña", type="password")
+        submit = st.form_submit_button("Ingresar al Laboratorio")
 
-    # (Aquí pegas tus Tabs y el resto del código...)
+        if submit:
+            # Revisa contra tus secretos (Configúralos en Streamlit Cloud > Settings > Secrets)
+            if user in st.secrets["passwords"] and pw == st.secrets["passwords"][user]:
+                st.session_state["password_correct"] = True
+                st.rerun() # Recarga la app para quitar el login
+            else:
+                st.error("❌ Usuario o contraseña incorrectos")
+
+    st.info("Capi, solicita tus credenciales para iniciar la misión.")
+    
+    # ESTA ES LA CLAVE: Detiene la ejecución aquí mismo
+    st.stop() 
+
+# 2. Ejecutar el candado al inicio
+check_password()
+
+# 3. TODO LO QUE SIGUE SOLO SE VERÁ SI PASÓ EL LOGIN
+# Aquí van tus Tabs, Mensaje de Bienvenida, Retos, etc.
+st.sidebar.success(f"👤 Sesión Iniciada")
+
+if st.sidebar.button("Cerrar Sesión"):
+    st.session_state["password_correct"] = False
+    st.rerun()
+
+# --- AQUÍ PEGAS TUS TABS Y EL RESTO DEL CONTENIDO ---
+# tabs = st.tabs(["🏠 Inicio", "🚀 Laboratorio", "📚 Glosario"])
+# ...
 
 # --- MENÚ DE NAVEGACIÓN PRINCIPAL ---
 tabs = st.tabs(["🏠 Inicio", "🚀 Laboratorio de 100 Retos", "📚 Glosario IA"])
