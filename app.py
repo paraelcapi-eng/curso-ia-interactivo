@@ -115,6 +115,119 @@ diccionario_retos = {
         "Usa fotos de cielos limpios y cielos con mucho smog o humo de fábricas.",
         "Muestra una foto de neblina matutina. ¿La IA da una alerta falsa de contaminación?"
     ],
+    # Lote 8: Accesibilidad
+    "Reto 71: Lenguaje de Señas (A-B-C)": [
+        "Aprender las bases de la comunicación no verbal.",
+        "Busca el alfabeto dactilológico y entrena las posiciones de las letras A, B y C.",
+        "Haz las señas con la mano contraria a la que usaste para entrenar. ¿La IA es capaz de entender la simetría?"
+    ],
+    "Reto 72: Lector de Semáforo Peatonal": [
+        "Asistir a personas con discapacidad visual en la calle.",
+        "Usa imágenes de semáforos peatonales en rojo y verde (puedes buscarlas en internet).",
+        "Dibuja un semáforo en un papel y muéstralo. ¿La IA reconoce el concepto o solo las fotos reales?"
+    ],
+    "Reto 73: Detector de Obstáculos": [
+        "Evitar accidentes en el camino de una persona.",
+        "Entrena el piso de tu habitación vacío y luego pon objetos como mochilas o zapatos.",
+        "¿Qué tan pequeño puede ser el objeto antes de que la IA deje de marcarlo como obstáculo?"
+    ],
+    "Reto 74: Traductor de Gestos de Ayuda": [
+        "Identificar señales de socorro internacionales.",
+        "Entrena el gesto de ayuda (Signal for Help) y una mano en posición normal.",
+        "Haz el gesto de forma muy veloz o con poca luz. ¿Qué tan confiable es la IA para emergencias?"
+    ],
+    "Reto 75: Identificador de Billetes": [
+        "Ayudar a identificar dinero en efectivo.",
+        "Usa dos billetes de diferente valor y color.",
+        "Dobla o arruga el billete y muéstralo de nuevo. ¿La IA se basa en el color o en los patrones del papel?"
+    ],
+    "Reto 76: Alerta de Llanto de Bebé": [
+        "Sistema de alerta auditiva para padres con hipoacusia.",
+        "Usa modelo de SONIDO. Graba un audio de un bebé llorando y compara con el ruido ambiental.",
+        "Pon un audio de un bostezo fuerte o una risa. ¿La IA genera una falsa alarma?"
+    ],
+    "Reto 77: Navegación por Cabeza": [
+        "Controlar una computadora sin usar las manos.",
+        "Usa el modelo de POSE. Entrena inclinar la cabeza a la izquierda y a la derecha.",
+        "Ponte una gorra o unos lentes oscuros. ¿Sigue detectando los puntos de tu cara correctamente?"
+    ],
+    "Reto 78: Lector de Braille Visual": [
+        "Convertir relieve táctil en información visual.",
+        "Dibuja patrones de puntos Braille en tarjetas blancas con marcador negro.",
+        "Usa un marcador de color claro (amarillo). ¿La IA pierde la capacidad de 'leer' los puntos?"
+    ],
+    "Reto 79: Detector de Caídas": [
+        "Monitoreo de seguridad para personas mayores.",
+        "Entrena la postura de una persona sentada correctamente vs. una persona en el suelo.",
+        "Acuéstate en una cama o sillón. ¿La IA confunde estar descansando con haber sufrido una caída?"
+    ],
+    "Reto 80: Reconocedor de Medicinas II": [
+        "Evitar errores en la toma de medicamentos.",
+        "Usa un frasco de jarabe y una caja de pastillas.",
+        "Muestra los envases por la parte de atrás (sin etiquetas). ¿La IA reconoce el objeto por su silueta?"
+    ],
+    # Lote 9: Creatividad y Arte
+    "Reto 81: Clasificador de Estilos": [
+        "Identificar técnicas artísticas básicas.",
+        "Entrena un modelo para diferenciar dibujos lineales de pinturas con pinceladas suaves.",
+        "Muestra un dibujo a lápiz pero con sombreado intenso. ¿La IA se confunde con la clase de 'pintura'?"
+    ],
+    "Reto 82: Director de Orquesta": [
+        "Controlar dispositivos mediante el ritmo.",
+        "Usa un objeto como batuta y entrena ritmos (lento, rápido, pausa).",
+        "Haz movimientos circulares en lugar de rítmicos. ¿Qué hace la IA cuando el movimiento no encaja en ninguna clase?"
+    ],
+    "Reto 83: Inspector de Calidad de Foto": [
+        "Evaluar la claridad y estética de una imagen.",
+        "Entrena clases de 'Buena Calidad' (nítida) y 'Mala Calidad' (borrosa o desenfocada).",
+        "Aplica un filtro de color o sepia a una foto nítida. ¿La IA la marca como mala calidad por el filtro?"
+    ],
+    "Reto 84: Traductor de Colores a Emociones": [
+        "Explorar la psicología del color.",
+        "Entrena clases de colores cálidos (rojos/naranjas) vs. fríos (azules/verdes).",
+        "Entrena con el color morado. ¿La IA lo clasifica como cálido o frío?"
+    ],
+    "Reto 85: El Crítico de Caligrafía": [
+        "Evaluar la legibilidad del trazo humano.",
+        "Entrena un modelo con tu letra clara y otra clase con tu letra hecha muy rápido (garabato).",
+        "Escribe con tu mano no dominante. ¿La IA reconoce la letra o se basa en el 'estilo' de tu mano dominante?"
+    ],
+    "Reto 86: Clasificador de Géneros Musicales": [
+        "Analizar patrones rítmicos en audio.",
+        "Usa el modelo de SONIDO para Rock, Jazz y Música Clásica.",
+        "Pon una canción de Jazz instrumental. ¿La IA nota la diferencia cuando no hay voz?"
+    ],
+    "Reto 87: Detector de Doodle": [
+        "Identificar bocetos rápidos.",
+        "Entrena el dibujo de un Sol y una Luna de forma simplificada.",
+        "Dibuja ambos elementos en el mismo papel. ¿La IA puede separar los objetos o se bloquea?"
+    ],
+    "Reto 88: Selector de Diseño": [
+        "Diferenciar estilos visuales.",
+        "Entrena diseños minimalistas (pocos elementos) vs. diseños complejos (muy cargados).",
+        "Usa un diseño minimalista pero con colores neón muy brillantes. ¿Qué pesa más para la IA: la forma o el color?"
+    ],
+    "Reto 89: Detector de Emoción en el Arte": [
+        "Interpretar la intención artística.",
+        "Entrena con dibujos que consideres 'Agresivos' (formas punzantes) vs 'Calmados' (curvas).",
+        "Muestra una pintura abstracta real. ¿La IA tiene un sesgo hacia formas simples que tú no entrenaste?"
+    ],
+    "Reto 90: El 'Pose' de Escultura": [
+        "Identificar formas corporales artísticas.",
+        "Entrena posturas famosas como 'El Pensador'.",
+        "¿Existe un sesgo en la IA para reconocer la belleza artística por encima de posturas cotidianas?"
+    ],
+    # Lote 10: Integración y Futuro
+    "Reto 91: El Botón del Futuro": ["Simular automatización básica.", "Entrena gestos de 'Encendido' y 'Apagado'.", "Haz el gesto con una luz tenue. ¿La IA mantiene la precisión?"],
+    "Reto 92: IA en la Educación": ["Facilitar el feedback docente.", "Entrena 'Duda' (mano alzada) y 'Entendido' (dedo pulgar).", "Prueba si la IA detecta la duda cuando el alumno está de espaldas."],
+    "Reto 93: Seguridad en el Lab": ["Entender autenticación biométrica.", "Entrena solo tu cara.", "Pide a alguien más que se acerque. ¿A qué porcentaje de confianza te confunde con ellos?"],
+    "Reto 94: IA y Ética": ["Detectar sesgos en modelos.", "Entrena 'Juguete de niño' y 'Juguete de niña'.", "Muestra un juguete neutro (ej. un cubo de Rubik). ¿Qué sesgo tiene tu modelo?"],
+    "Reto 95: Interfaz de Sueños": ["Creatividad abstracta.", "Entrena 'Paz' y 'Caos' con dibujos espontáneos.", "Usa colores opuestos para cada clase. ¿La IA nota la intención artística?"],
+    "Reto 96: IA contra el Hackeo": ["Robustez del modelo.", "Entrena un objeto y trata de engañar al modelo con imágenes similares.", "Añade ruido (papel transparente arrugado) frente a la cámara."],
+    "Reto 97: El Gemelo Digital": ["Personalización de la IA.", "Entrena una seña exclusiva tuya.", "Crea un modelo que solo reaccione a tu lenguaje corporal específico."],
+    "Reto 98: IA de Campo": ["Robótica aplicada.", "Entrena 'Adelante', 'Atrás', 'Girar'.", "Simula que controlas un robot imaginario. ¿La fluidez del movimiento afecta la predicción?"],
+    "Reto 99: Reflexión Final": ["Ética profunda.", "Entrena 'IA Amiga' (formas curvas) vs 'IA Peligrosa' (formas angulares).", "Analiza tu bitácora de los 99 retos anteriores. ¿Qué aprendiste?"],
+    "Reto 100: El Proyecto Maestro": ["Integración total.", "Crea un sistema con 4 clases que solucione un problema real de tu casa.", "Presenta tu modelo en el 'Salón de la Fama' de la app."]
 }
 
 # --- INTERFAZ DE USUARIO ---
@@ -159,6 +272,12 @@ if url_modelo:
     st.link_button("🎯 PROBAR MODELO AHORA", url_modelo)
 else:
     st.warning("Capi, pega el link para activar el botón de prueba.")
+    if url_modelo:
+    st.success("🎯 ¡Modelo cargado con éxito! Haz clic abajo para probarlo.")
+    st.link_button("🚀 INICIAR PRUEBA DE CAMPO", url_modelo)
+else:
+    # Esta es la línea que me preguntaste:
+    st.warning("⚠️ Capi, pega el enlace de tu modelo arriba para activar los sensores de prueba.")
 
 st.markdown("---")
 st.caption("Plataforma de capacitación técnica - Capi 2026")
