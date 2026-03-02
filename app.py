@@ -231,7 +231,7 @@ diccionario_retos = {
 }
 
 # --- INTERFAZ DE USUARIO ---
-st.title("🚀 IA Academy: Panel de Control")
+st.title("🚀 Cusro IA : Panel de Control")
 st.markdown("---")
 
 # --- SECCIÓN DE AYUDA RÁPIDA (INSTRUCCIONES) ---
@@ -285,7 +285,7 @@ st.markdown("---")
 st.info("💡 Tip: Recuerda que el modelo debe estar publicado como 'Tensorflow.js' en Teachable Machine.")
 
 st.markdown("---")
-st.caption("Plataforma de capacitación técnica - Capi 2026")
+st.caption("Plataforma de capacitación técnica ")
 
 # --- EN EL CUERPO PRINCIPAL DE TU APP ---
 
