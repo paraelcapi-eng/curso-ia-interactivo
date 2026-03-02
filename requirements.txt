@@ -1,0 +1,3 @@
+streamlit
+teachable-machine-lite
+opencv-python-headless
