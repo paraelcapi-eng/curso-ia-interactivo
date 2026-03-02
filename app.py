@@ -1,61 +1,69 @@
 import streamlit as st
 
-# Configuración profesional de la página
 st.set_page_config(page_title="IA Academy - Capi", page_icon="🤖", layout="wide")
 
-st.title("🤖 IA Academy: Laboratorio Interactivo")
-st.markdown("---")
+# --- BASE DE DATOS DE RETOS (Aquí agregamos los nuevos) ---
+diccionario_retos = {
+    # Lote 1
+    "Reto 01: El Semáforo Humano": "Entrena 3 clases: Rojo (mano abierta), Amarillo (puño), Verde (dedo arriba).",
+    "Reto 02: Detector de Emociones": "Entrena 'Feliz' vs 'Enojado'. Prueba si funciona si te tapas la boca.",
+    "Reto 03: Inspector de Frutas": "Usa una manzana real y una dibujada. ¿La IA nota la diferencia?",
+    "Reto 04: El Lector de Mentes": "Entrena con tu mano derecha. Prueba si reconoce la izquierda (Sesgo).",
+    "Reto 05: Eco-Clasificador": "Diferencia entre una botella de plástico y una de vidrio.",
+    "Reto 06: Estatua vs Humano": "Entrena 'Persona quieta' vs 'Persona moviéndose'.",
+    "Reto 07: Criptografía Visual": "Entrena la IA: Lápiz = Letra A, Borrador = Letra B.",
+    "Reto 08: El Árbitro de Piedra": "Entrena el juego clásico: Piedra, Papel o Tijera.",
+    "Reto 09: Corrector de Postura": "Entrena 'Bien sentado' vs 'Encorvado'.",
+    "Reto 10: Detector de Marcas": "Diferencia entre el logo de Google y el de Apple.",
+    
+    # Lote 2
+    "Reto 11: El Susurro vs. El Grito": "Usa modelo de SONIDO. Diferencia volumen y tono de voz.",
+    "Reto 12: Identificador de Monedas": "¿Puede la IA distinguir monedas de diferente valor?",
+    "Reto 13: Control Remoto Humano": "Mapea gestos para comandos (Play, Stop, Next).",
+    "Reto 14: ¿Quién es quién?": "Reconocimiento facial: Tú vs otra persona.",
+    "Reto 15: El Traductor de Objetos": "Entrena 'Teclado', 'Mouse' y 'Celular'.",
+    "Reto 16: Clasificador de Clima": "Muestra fotos de 'Día Soleado' vs 'Día Lluvioso'.",
+    "Reto 17: Detector de Cubrebocas": "Entrena 'Con mascarilla' vs 'Sin mascarilla'.",
+    "Reto 18: Sonidos de Oficina": "Sonido de 'Teclado' vs 'Tijeras cortando'.",
+    "Reto 19: Yoga Check": "Entrena postura de 'Guerrero' vs 'Árbol' (Cuerpo completo).",
+    "Reto 20: El Crítico de Arte": "Diferencia entre un 'Dibujo' y un 'Garabato'.",
 
-# Panel Lateral con los 100 Retos (Ejemplo de los primeros 10)
-with st.sidebar:
-    st.header("📚 Panel de Retos")
-    reto_seleccionado = st.selectbox("Selecciona tu ejercicio:", [
-        "Reto 01: El Semáforo Humano",
-        "Reto 02: Detector de Emociones",
-        "Reto 03: Inspector de Frutas",
-        "Reto 04: Lector de Mentes",
-        "Reto 05: Eco-Clasificador",
-        "Reto 06: Estatua vs Humano",
-        "Reto 07: Criptografía Visual",
-        "Reto 08: El Árbitro de Piedra",
-        "Reto 09: Corrector de Postura",
-        "Reto 10: Detector de Marcas"
-    ])
-    st.info("Instrucción: Entrena tu modelo en Teachable Machine y pega el link abajo.")
-
-# Cuerpo principal
-st.subheader(f"🚀 {reto_seleccionado}")
-
-# Lógica de instrucciones dinámicas
-if "01" in reto_seleccionado:
-    st.write("**Objetivo:** Diferenciar 3 estados usando gestos (Rojo, Amarillo, Verde).")
-elif "02" in reto_seleccionado:
-    st.write("**Objetivo:** Reconocer expresiones faciales (Feliz vs Enojado).")
-else:
-    st.write("Sigue las instrucciones de tu guía de ejercicios para este reto.")
-
-st.divider()
-
-# Sección de Interacción
-st.subheader("🔗 Prueba tu Modelo")
-url_modelo = st.text_input("Pega el enlace de tu modelo (https://teachablemachine...):")
-
-if url_modelo:
-    st.success("¡Modelo detectado!")
-    st.write("Para probarlo, haz clic en el siguiente botón. Se abrirá la interfaz oficial de prueba de Google para que uses tu cámara sin errores:")
-    st.link_button("👉 Abrir Probador de IA", url_modelo)
-else:
-    st.warning("Esperando enlace del modelo para comenzar la evaluación...")
-
-st.markdown("---")
-st.caption("Plataforma educativa diseñada por Capi - 2026")
-# Ejemplo de cómo organizar las instrucciones en el código
-instrucciones = {
-    "Reto 11: El Susurro vs. El Grito": "Usa el modelo de SONIDO. Graba muestras de silencio, susurros y gritos.",
-    "Reto 12: Identificador de Monedas": "Usa el modelo de IMAGEN. Compara dos monedas de distinto tamaño y metal.",
-    "Reto 13: Control Remoto Humano": "Usa el modelo de IMAGEN. Define gestos claros para controlar una app imaginaria.",
-    # ... así vas agregando todos los demás
+    # Lote 3
+    "Reto 21: El Espejismo de la Luz": "Entrena con mucha luz y prueba en la oscuridad.",
+    "Reto 22: Sesgo de Género/Edad": "Prueba si un modelo entrenado con adultos reconoce niños.",
+    "Reto 23: El Camuflaje del Fondo": "Entrena un objeto y muévelo de habitación. ¿Falla?",
+    "Reto 24: La Prueba de la Foto": "¿Tu IA distingue una persona real de una foto en el celular?",
+    "Reto 25: Clasificador de Idiomas": "Diferencia sonidos de 'Hola', 'Hello' y 'Bonjour'.",
+    "Reto 26: Detección de Fake News": "Entrena 'Billete Real' vs 'Billete Dibujado'.",
+    "Reto 27: El Reto de las Gafas": "Entrena 'Con lentes' vs 'Sin lentes'.",
+    "Reto 28: Inclusión Visual": "Gestos de Sí/No con alguien usando sombrero o cabello largo.",
+    "Reto 29: Calidad de Fruta": "Diferencia 'Plátano Maduro' de uno 'Verde'.",
+    "Reto 30: El Árbitro de Yoga II": "Detectar 'Espalda Recta' vs 'Espalda Curva' en Plancha.",
 }
 
-# Y en el cuerpo de la app solo pones:
-st.info(instrucciones.get(reto_seleccionado, "Instrucciones en desarrollo..."))
+# --- INTERFAZ DE USUARIO ---
+st.title("🚀 IA Academy: Panel de Control")
+st.markdown("---")
+
+with st.sidebar:
+    st.header("📖 Listado de Retos")
+    seleccion = st.selectbox("Elige tu ejercicio:", list(diccionario_retos.keys()))
+    st.divider()
+    st.write("**Instrucción del Reto:**")
+    st.info(diccionario_retos[seleccion])
+
+st.subheader(f"Trabajando en: {seleccion}")
+st.write("1. Ve a [Teachable Machine](https://teachablemachine.withgoogle.com/) y entrena tu modelo.")
+st.write("2. Exporta el modelo como 'Update Cloud Model' y copia el link.")
+st.write("3. Pégalo aquí abajo para verificar tu trabajo.")
+
+url_modelo = st.text_input("Enlace del modelo (URL):", placeholder="https://teachablemachine.withgoogle.com/models/...")
+
+if url_modelo:
+    st.success("¡Modelo listo para evaluación!")
+    st.link_button("🎯 PROBAR MODELO AHORA", url_modelo)
+else:
+    st.warning("Capi, pega el link para activar el botón de prueba.")
+
+st.markdown("---")
+st.caption("Plataforma de capacitación técnica - Capi 2026")
