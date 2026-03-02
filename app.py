@@ -12,7 +12,7 @@ def check_password():
         return True
 
     # Pantalla de Login (Solo se ve si no está logueado)
-    st.title("🔐 IA Academy - Acceso Restringido")
+    st.title("🔐 Material Didactico - Acceso Restringido")
     
     with st.form("login_form"):
         user = st.text_input("Usuario")
