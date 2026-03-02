@@ -1,10 +1,56 @@
 import streamlit as st
+import streamlit as st
+
+# --- CONFIGURACIÓN DE LOGIN ---
+def check_password():
+    """Retorna True si el usuario ingresó la contraseña correcta."""
+
+    def password_entered():
+        """Revisa si la contraseña coincide."""
+        if st.session_state["username"] in st.secrets["passwords"] and \
+           st.session_state["password"] == st.secrets["passwords"][st.session_state["username"]]:
+            st.session_state["password_correct"] = True
+            del st.session_state["password"]  # No guardar la contraseña en el estado
+            del st.session_state["username"]
+        else:
+            st.session_state["password_correct"] = False
+
+    if "password_correct" not in st.session_state:
+        # Pantalla de Login inicial
+        st.title("🔐 Acceso a IA Academy")
+        st.text_input("Usuario", on_change=password_entered, key="username")
+        st.text_input("Contraseña", type="password", on_change=password_entered, key="password")
+        st.info("Capi, solicita tus credenciales de acceso al administrador.")
+        return False
+    elif not st.session_state["password_correct"]:
+        # Credenciales incorrectas
+        st.title("🔐 Acceso a IA Academy")
+        st.text_input("Usuario", on_change=password_entered, key="username")
+        st.text_input("Contraseña", type="password", on_change=password_entered, key="password")
+        st.error("😕 Usuario o contraseña incorrectos. Intenta de nuevo.")
+        return False
+    else:
+        # Acceso concedido
+        return True
+
+# --- LÓGICA DE CONTROL ---
+if check_password():
+    # AQUÍ VA TODO EL CÓDIGO QUE YA TENEMOS (Tabs, Retos, Bienvenida, etc.)
+    # Todo lo que escribimos antes debe ir indentado (con un espacio a la derecha) 
+    # dentro de este 'if'.
+    
+    st.sidebar.success("✅ Sesión Iniciada")
+    if st.sidebar.button("Cerrar Sesión"):
+        st.session_state.clear()
+        st.rerun()
+
+    # (Aquí pegas tus Tabs y el resto del código...)
 
 # --- MENÚ DE NAVEGACIÓN PRINCIPAL ---
 tabs = st.tabs(["🏠 Inicio", "🚀 Laboratorio de 100 Retos", "📚 Glosario IA"])
 
 with tabs[0]: # Pestaña de Inicio
-    st.title("🤖 ¡Bienvenido a IA Academy, Capi!")
+    st.title("🤖 ¡Bienvenido(a) al curso de Inteligencia Artificial")
     
     col1, col2 = st.columns([2, 1])
     
