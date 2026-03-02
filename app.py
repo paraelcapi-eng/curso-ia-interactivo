@@ -49,3 +49,13 @@ else:
 
 st.markdown("---")
 st.caption("Plataforma educativa diseñada por Capi - 2026")
+# Ejemplo de cómo organizar las instrucciones en el código
+instrucciones = {
+    "Reto 11: El Susurro vs. El Grito": "Usa el modelo de SONIDO. Graba muestras de silencio, susurros y gritos.",
+    "Reto 12: Identificador de Monedas": "Usa el modelo de IMAGEN. Compara dos monedas de distinto tamaño y metal.",
+    "Reto 13: Control Remoto Humano": "Usa el modelo de IMAGEN. Define gestos claros para controlar una app imaginaria.",
+    # ... así vas agregando todos los demás
+}
+
+# Y en el cuerpo de la app solo pones:
+st.info(instrucciones.get(reto_seleccionado, "Instrucciones en desarrollo..."))
