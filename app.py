@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.set_page_config(page_title="IA Academy - Capi", page_icon="🤖", layout="wide")
+st.set_page_config(page_title="Curso Inteligencia Artificial", page_icon="🤖", layout="wide")
 
 # --- BASE DE DATOS DE RETOS (Aquí agregamos los nuevos) ---
 diccionario_retos = {
