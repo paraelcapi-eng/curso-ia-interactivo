@@ -39,6 +39,30 @@ diccionario_retos = {
     "Reto 28: Inclusión Visual": "Gestos de Sí/No con alguien usando sombrero o cabello largo.",
     "Reto 29: Calidad de Fruta": "Diferencia 'Plátano Maduro' de uno 'Verde'.",
     "Reto 30: El Árbitro de Yoga II": "Detectar 'Espalda Recta' vs 'Espalda Curva' en Plancha.",
+
+    # Lote 4
+    "Reto 31: El Click por Gesto": "Entrena un gesto para simular una acción de clic.",
+    "Reto 32: Asistente de Lectura": "Entrena la diferencia entre tipos de papel impreso.",
+    "Reto 33: Control de Volumen": "Entrena gestos de altura para simular control de audio.",
+    "Reto 34: Juego de Memoria Visual": "Entrena 4 cartas de juego o símbolos distintos.",
+    "Reto 35: Detector de Mascotas": "Diferencia entre tu mascota real y un juguete similar.",
+    "Reto 36: Gestor de Prioridades": "Entrena 'Urgente' (rojo) vs 'Pendiente' (verde).",
+    "Reto 37: Simulador de Tablero": "Entrena piezas de juego o representaciones gráficas.",
+    "Reto 38: Cámara de Seguridad": "Entrena 'Habitación vacía' vs 'Persona presente'.",
+    "Reto 39: Detector de Colores": "Entrena la clasificación de colores primarios.",
+    "Reto 40: El Portero Virtual": "Entrena un gesto de atajada ante un balón gráfico.",
+
+    # Lote 5
+    "Reto 41: Recordatorio de Hidratación": "Entrena el gesto de beber agua para crear un recordatorio.",
+    "Reto 42: Detector de Fatiga": "Diferencia entre ojos abiertos y un bostezo para detectar cansancio.",
+    "Reto 43: Entrenador de Yoga III": "Evalúa el equilibrio en la postura del árbol (Pose).",
+    "Reto 44: Fisioterapia en Casa": "Entrena la extensión y flexión de una articulación.",
+    "Reto 45: Alerta de Tics/Hábitos": "Detecta cuando el usuario se toca la cara o se muerde las uñas.",
+    "Reto 46: Detector de Sonrisas": "Crea un modelo que identifique una expresión de felicidad.",
+    "Reto 47: Identificador de Medicinas": "Diferencia empaques de medicamentos por color y forma.",
+    "Reto 48: Monitor de Meditación": "Identifica la postura correcta y ojos cerrados para meditar.",
+    "Reto 49: Gimnasia Cerebral": "Entrena patrones cruzados de manos y cara.",
+    "Reto 50: El Break Obligatorio": "Identifica posturas estáticas prolongadas que sugieran un descanso.",
 }
 
 # --- INTERFAZ DE USUARIO ---
@@ -67,3 +91,22 @@ else:
 
 st.markdown("---")
 st.caption("Plataforma de capacitación técnica - Capi 2026")
+
+# --- EN EL CUERPO PRINCIPAL DE TU APP ---
+
+st.divider()
+
+# Sección de Reflexión (Bitácora)
+st.subheader("📝 Bitácora de Observación del Estudiante")
+st.write("Antes de pasar al siguiente reto, completa tu bitácora de investigador:")
+
+# Campos de la bitácora
+observacion = st.text_area("¿Qué sucedió cuando intentaste 'hackear' el modelo?", 
+                           placeholder="Ejemplo: La IA falló cuando usé la mano izquierda...")
+
+if observacion:
+    st.success("✅ ¡Bitácora registrada! Tus observaciones son clave para mejorar la IA.")
+    st.balloons() # ¡Pequeño premio visual por documentar!
+
+st.markdown("---")
+st.caption("Plataforma de Investigación en IA - Capi 2026")
