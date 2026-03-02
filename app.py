@@ -1,34 +1,29 @@
 import streamlit as st
-from teachable_machine_lite import TeachableMachineModel
-import cv2
-import numpy as np
 
-st.set_page_config(page_title="IA Academy - Arena de Pruebas", layout="wide")
+st.set_page_config(page_title="IA Academy - Portal", layout="centered")
 
 st.title("🚀 Centro de Experimentación de IA")
-st.subheader("Capi, bienvenido a tu laboratorio interactivo")
+st.write("Bienvenido, capi. Aquí puedes organizar tus retos de clase.")
 
-# Sidebar para configuración
-with st.sidebar:
-    st.header("Configuración del Reto")
-    model_url = st.text_input("Pega el enlace de tu modelo de Teachable Machine:", 
-                             placeholder="https://teachablemachine.withgoogle.com/models/...")
-    
-    ejercicio_num = st.selectbox("Selecciona el Ejercicio:", 
-                                [f"Reto {i}: " for i in range(1, 101)])
+# Menú de selección de reto
+reto = st.selectbox("Selecciona el reto del día:", [
+    "Reto 01: El Semáforo Humano",
+    "Reto 02: Detector de Emociones",
+    "Reto 03: Inspector de Frutas",
+    "Reto 04: Lector de Mentes"
+])
+
+st.subheader(f"Instrucciones para: {reto}")
+if reto == "Reto 01: El Semáforo Humano":
+    st.write("Instrucción: Entrena tres clases (Rojo, Amarillo, Verde) usando gestos con la mano.")
+    st.info("💡 Consejo: Asegúrate de tener buena iluminación.")
+
+# Sección de pruebas externa
+st.divider()
+st.subheader("🧪 Área de Prueba")
+model_url = st.text_input("Pega aquí el enlace de tu modelo entrenado:")
 
 if model_url:
-    st.success("✅ Modelo cargado correctamente. ¡Inicia la cámara!")
-    
-    # Lógica simplificada de cámara y predicción
-    img_file_buffer = st.camera_input("Toma una foto para que la IA la analice")
-
-    if img_file_buffer is not None:
-        # Aquí la app procesa la imagen con el modelo del alumno
-        st.write("### 🧠 Resultado de la IA:")
-        st.info("Simulando análisis... (Aquí aparecerá la clase con mayor probabilidad)")
-else:
-    st.warning("👈 Por favor, entrena tu modelo en Teachable Machine y pega el link en la izquierda para comenzar.")
-
-st.markdown("---")
-st.caption("Diseñado por tu Consultor de IA para el curso de Capi.")
+    st.write("¡Modelo listo para probar!")
+    st.markdown(f"[Haz clic aquí para abrir tu modelo en una ventana nueva]({model_url})")
+    st.warning("Nota: Teachable Machine se abrirá en una nueva pestaña para que pruebes tu cámara ahí.")
