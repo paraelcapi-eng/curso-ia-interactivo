@@ -263,9 +263,6 @@ with st.sidebar:
 st.subheader(f"Trabajando en: {seleccion}")
 st.write("1. Ve a [Teachable Machine](https://teachablemachine.withgoogle.com/) y entrena tu modelo.")
 st.write("2. Exporta el modelo como 'Update Cloud Model' y copia el link.")
-st.write("3. Pégalo aquí abajo para verificar tu trabajo.")
-
-url_modelo = st.text_input("Enlace del modelo (URL):", placeholder="https://teachablemachine.withgoogle.com/models/...")
 
 # --- ENTRADA DEL MODELO ---
 st.subheader("🔗 Entrega de Resultados")
