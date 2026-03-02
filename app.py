@@ -1,5 +1,45 @@
 import streamlit as st
 
+# --- MENÚ DE NAVEGACIÓN PRINCIPAL ---
+tabs = st.tabs(["🏠 Inicio", "🚀 Laboratorio de 100 Retos", "📚 Glosario IA"])
+
+with tabs[0]: # Pestaña de Inicio
+    st.title("🤖 ¡Bienvenido a IA Academy, Capi!")
+    
+    col1, col2 = st.columns([2, 1])
+    
+    with col1:
+        st.markdown(f"""
+        ### ¡Hola, Investigador! 
+        Estás a punto de iniciar un viaje épico por el mundo de la **Inteligencia Artificial**. 
+        Esta plataforma ha sido diseñada para que dejes de ser un espectador y te conviertas en un **Creador de IA**.
+        
+        **¿Qué aprenderás aquí?**
+        * 🎯 **Entrenamiento:** Cómo enseñarle a una máquina a ver y oír.
+        * 🔍 **Diagnóstico:** Por qué la IA se equivoca y cómo arreglarla.
+        * 💡 **Impacto:** Cómo usar la IA para resolver problemas reales.
+        
+        *Pasa a la pestaña de **Laboratorio** para comenzar tu primer reto.*
+        """)
+    
+    with col2:
+        st.info("⭐ **Progreso Actual:**\n\n 10 Lotes de Retos disponibles.\n\n 100 Misiones activas.")
+        st.image("https://teachablemachine.withgoogle.com/assets/img/content/home/home-hero-visual.png")
+
+with tabs[1]: # Pestaña del Laboratorio (Aquí mueves todo tu código anterior)
+    # Aquí va el Selector de Retos, el Expander de ayuda y la Lógica del Link que ya tienes
+    st.header("🧪 Laboratorio de Entrenamiento")
+    # ... (Aquí pegas el resto de tu código de retos) ...
+
+with tabs[2]: # Pestaña de Glosario
+    st.header("📖 Conceptos que debes dominar")
+    st.write({
+        "Dataset": "El conjunto de ejemplos (fotos/audios) que usas para enseñar a la IA.",
+        "Clase": "Cada una de las categorías que la IA debe aprender a distinguir.",
+        "Inferencia": "El momento en que la IA 'adivina' qué está viendo basándose en su entrenamiento.",
+        "Sesgo (Bias)": "Un error sistemático donde la IA favorece un resultado por falta de datos variados."
+    })
+
 st.set_page_config(page_title="Curso Inteligencia Artificial", page_icon="🤖", layout="wide")
 
 # --- BASE DE DATOS DE RETOS (Aquí agregamos los nuevos) ---
