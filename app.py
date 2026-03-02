@@ -267,17 +267,25 @@ st.write("3. Pégalo aquí abajo para verificar tu trabajo.")
 
 url_modelo = st.text_input("Enlace del modelo (URL):", placeholder="https://teachablemachine.withgoogle.com/models/...")
 
+# --- ENTRADA DEL MODELO ---
+st.subheader("🔗 Entrega de Resultados")
+
+# Caja para que el alumno pegue su URL
+url_modelo = st.text_input("Pega aquí el enlace de tu modelo (URL):", 
+                           placeholder="https://teachablemachine.withgoogle.com/models/...")
+
+# --- LÓGICA DE ACTIVACIÓN (Aquí va lo que preguntaste) ---
 if url_modelo:
-    st.success("¡Modelo listo para evaluación!")
-    st.link_button("🎯 PROBAR MODELO AHORA", url_modelo)
-else:
-    st.warning("Capi, pega el link para activar el botón de prueba.")
-    if url_modelo:
-    st.success("🎯 ¡Modelo cargado con éxito! Haz clic abajo para probarlo.")
+    # Si el alumno ya pegó algo, mostramos el éxito y el botón
+    st.success("🎯 ¡Modelo detectado y listo para evaluación!")
     st.link_button("🚀 INICIAR PRUEBA DE CAMPO", url_modelo)
 else:
-    # Esta es la línea que me preguntaste:
+    # Si la caja está vacía, mostramos tu mensaje de guía
     st.warning("⚠️ Capi, pega el enlace de tu modelo arriba para activar los sensores de prueba.")
+
+st.markdown("---")
+# Pie de página opcional
+st.info("💡 Tip: Recuerda que el modelo debe estar publicado como 'Tensorflow.js' en Teachable Machine.")
 
 st.markdown("---")
 st.caption("Plataforma de capacitación técnica - Capi 2026")
