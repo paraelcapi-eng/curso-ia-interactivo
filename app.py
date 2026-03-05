@@ -136,6 +136,15 @@ diccionario_retos = {
         "Usa fotos de cielos limpios y cielos con mucho smog o humo de fábricas.",
         "Muestra una foto de neblina matutina. ¿La IA da una alerta falsa de contaminación?"
     ],
+    
+}
+# --- BASE DE DATOS DE SITUACIONES DE PROMPT ---
+diccionario_prompts = {
+    "Situación 01: El Tutor de Matemáticas": "Crea un prompt para una IA que debe explicar fracciones a niños de 8 años usando metáforas de pizza.",
+    "Situación 02: El Chef de Sobras": "Diseña un prompt donde la IA actúe como un chef experto que genera recetas basadas solo en 3 ingredientes que el usuario le proporcione.",
+    "Selección 03: Entrenador de Ventas": "Configura a la IA como un cliente difícil que objeta todo, para que un vendedor pueda practicar su manejo de rechazos.",
+    "Situación 04: Guía de Viajes Históricos": "La IA debe ser un historiador que organiza un tour de 3 días por Roma, pero enfocado solo en intrigas y misterios antiguos.",
+    "Situación 05: El Programador Senior": "Un prompt para que la IA revise código en Python, encuentre errores de seguridad y sugiera mejoras siguiendo estándares profesionales."
 }
 
 # 4. BARRA LATERAL (Solo visible tras login)
