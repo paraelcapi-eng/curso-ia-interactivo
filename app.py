@@ -1,33 +1,97 @@
 import streamlit as st
 
-# 1. SIEMPRE PRIMERO: Configuración de la página
-st.set_page_config(page_title="Curso Inteligencia Artificial", page_icon="🤖", layout="wide")
-
-# 2. Función de Autenticación
+# 1. Función de Autenticación con Bloqueo
 def check_password():
+    """Retorna True si el usuario ingresó la contraseña correcta, de lo contrario detiene la app."""
+
     if "password_correct" not in st.session_state:
         st.session_state["password_correct"] = False
+
+    # Si ya está logueado, regresamos True y no mostramos el login
     if st.session_state["password_correct"]:
         return True
 
-    st.title("🔐 Material Didáctico - Acceso Restringido")
+    # Pantalla de Login (Solo se ve si no está logueado)
+    st.title("🔐 Material Didactico - Acceso Restringido")
+    
     with st.form("login_form"):
         user = st.text_input("Usuario")
         pw = st.text_input("Contraseña", type="password")
         submit = st.form_submit_button("Ingresar al Laboratorio")
+
         if submit:
+            # Revisa contra tus secretos (Configúralos en Streamlit Cloud > Settings > Secrets)
             if user in st.secrets["passwords"] and pw == st.secrets["passwords"][user]:
                 st.session_state["password_correct"] = True
-                st.rerun()
+                st.rerun() # Recarga la app para quitar el login
             else:
                 st.error("❌ Usuario o contraseña incorrectos")
-    st.info("Solicita tus credenciales para iniciar la misión.")
+
+    st.info("solicita tus credenciales para iniciar la misión.")
+    
+    # ESTA ES LA CLAVE: Detiene la ejecución aquí mismo
     st.stop() 
 
+# 2. Ejecutar el candado al inicio
 check_password()
 
-# 3. BASE DE DATOS (Ponla aquí para que esté disponible en toda la app)
+# 3. TODO LO QUE SIGUE SOLO SE VERÁ SI PASÓ EL LOGIN
+# Aquí van tus Tabs, Mensaje de Bienvenida, Retos, etc.
+st.sidebar.success(f"👤 Sesión Iniciada")
+
+if st.sidebar.button("Cerrar Sesión"):
+    st.session_state["password_correct"] = False
+    st.rerun()
+
+# --- AQUÍ PEGAS TUS TABS Y EL RESTO DEL CONTENIDO ---
+# tabs = st.tabs(["🏠 Inicio", "🚀 Laboratorio", "📚 Glosario"])
+# ...
+
+# --- MENÚ DE NAVEGACIÓN PRINCIPAL ---
+tabs = st.tabs(["🏠 Inicio", "🚀 Laboratorio de 100 Retos", "📚 Glosario IA", "🎯 Taller de Prompts"])
+
+with tabs[0]: # Pestaña de Inicio
+    st.title("🤖 ¡Bienvenido(a) al curso de Inteligencia Artificial")
+    
+    col1, col2 = st.columns([2, 1])
+    
+    with col1:
+        st.markdown(f"""
+        ### ¡Hola, Investigador! 
+        Estás a punto de iniciar un viaje épico por el mundo de la **Inteligencia Artificial**. 
+        Esta plataforma ha sido diseñada para que dejes de ser un espectador y te conviertas en un **Creador de IA**.
+        
+        **¿Qué aprenderás aquí?**
+        * 🎯 **Entrenamiento:** Cómo enseñarle a una máquina a ver y oír.
+        * 🔍 **Diagnóstico:** Por qué la IA se equivoca y cómo arreglarla.
+        * 💡 **Impacto:** Cómo usar la IA para resolver problemas reales.
+        
+        *Pasa a la pestaña de **Laboratorio** para comenzar tu primer reto.*
+        """)
+    
+    with col2:
+        st.info("⭐ **Progreso Actual:**\n\n 10 Lotes de Retos disponibles.\n\n 100 Misiones activas.")
+        st.image("https://teachablemachine.withgoogle.com/assets/img/content/home/home-hero-visual.png")
+
+with tabs[1]: # Pestaña del Laboratorio (Aquí mueves todo tu código anterior)
+    # Aquí va el Selector de Retos, el Expander de ayuda y la Lógica del Link que ya tienes
+    st.header("🧪 Laboratorio de Entrenamiento")
+    # ... (Aquí pegas el resto de tu código de retos) ...
+
+with tabs[2]: # Pestaña de Glosario
+    st.header("📖 Conceptos que debes dominar")
+    st.write({
+        "Dataset": "El conjunto de ejemplos (fotos/audios) que usas para enseñar a la IA.",
+        "Clase": "Cada una de las categorías que la IA debe aprender a distinguir.",
+        "Inferencia": "El momento en que la IA 'adivina' qué está viendo basándose en su entrenamiento.",
+        "Sesgo (Bias)": "Un error sistemático donde la IA favorece un resultado por falta de datos variados."
+    })
+
+st.set_page_config(page_title="Curso Inteligencia Artificial", page_icon="🤖", layout="wide")
+
+# --- BASE DE DATOS DE RETOS (Aquí agregamos los nuevos) ---
 diccionario_retos = {
+    # Lote 1
     "Reto 01: El Semáforo Humano": "Entrena 3 clases: Rojo (mano abierta), Amarillo (puño), Verde (dedo arriba).",
     "Reto 02: Detector de Emociones": "Entrena 'Feliz' vs 'Enojado'. Prueba si funciona si te tapas la boca.",
     "Reto 03: Inspector de Frutas": "Usa una manzana real y una dibujada. ¿La IA nota la diferencia?",
@@ -253,40 +317,6 @@ diccionario_retos = {
     "Reto 100: El Proyecto Maestro": ["Integración total.", "Crea un sistema con 4 clases que solucione un problema real de tu casa.", "Presenta tu modelo en el 'Salón de la Fama' de la app."]
 }
 
-
-
-# 4. BARRA LATERAL (Sidebar)
-with st.sidebar:
-    st.success(f"👤 Sesión Iniciada")
-    if st.button("Cerrar Sesión"):
-        st.session_state["password_correct"] = False
-        st.rerun()
-    
-    st.divider()
-    st.header("📖 Listado de Retos")
-    seleccion = st.selectbox("Elige tu ejercicio:", list(diccionario_retos.keys()))
-    st.info(diccionario_retos[seleccion])
-
-# 5. MENÚ DE PESTAÑAS
-tabs = st.tabs(["🏠 Inicio", "🚀 Laboratorio de 100 Retos", "📚 Glosario IA", "🎯 Taller de Prompts"])
-
-# --- PESTAÑA 0: INICIO ---
-with tabs[0]:
-    st.title("🤖 ¡Bienvenido(a) al curso de Inteligencia Artificial")
-    col1, col2 = st.columns([2, 1])
-    with col1:
-        st.markdown("""
-        ### ¡Hola, Investigador! 
-        Esta plataforma ha sido diseñada para que seas un **Creador de IA**.
-        """)
-    with col2:
-        st.image("https://teachablemachine.withgoogle.com/assets/img/content/home/home-hero-visual.png")
-
-# --- PESTAÑA 1: LABORATORIO (Aquí va la lógica de Teachable Machine) ---
-with tabs[1]:
-    st.header(f"🧪 Laboratorio: {seleccion}")
-    
-   # --- SECCIÓN DE AYUDA RÁPIDA (INSTRUCCIONES) ---
 # --- INTERFAZ DE USUARIO ---
 st.title("🚀 Cusro IA : Panel de Control")
 st.markdown("---")
@@ -344,29 +374,61 @@ st.info("💡 Tip: Recuerda que el modelo debe estar publicado como 'Tensorflow.
 st.markdown("---")
 st.caption("Plataforma de capacitación técnica ")
 
+# --- EN EL CUERPO PRINCIPAL DE TU APP ---
 
-# --- PESTAÑA 2: GLOSARIO ---
-with tabs[2]:
-    st.header("📖 Conceptos que debes dominar")
-    st.write({"Dataset": "Ejemplos para enseñar.", "Clase": "Categorías."})
+st.divider()
 
-# --- PESTAÑA 3: TALLER DE PROMPTS ---
-with tabs[3]:
-    st.header("🎯 Laboratorio de Ingeniería de Prompts")
-    col_p1, col_p2 = st.columns([1, 1])
-    with col_p1:
-        user_prompt = st.text_area("Escribe tu prompt aquí:", height=250, key="area_prompt")
-        st.subheader("✅ Checklist de Calidad")
-        c1 = st.checkbox("01. ¿Asignaste un ROL?")
-        c2 = st.checkbox("02. ¿Solicitaste la TAREA?")
-        c3 = st.checkbox("03. ¿Diste CONTEXTO?")
-        c4 = st.checkbox("04. ¿Estableciste FORMATO?")
-        c5 = st.checkbox("05. ¿Diste DATOS ADICIONALES?")
-        c6 = st.checkbox("06. ¿Solicitaste PREGUNTAS?")
-    with col_p2:
-        puntos = sum([c1, c2, c3, c4, c5, c6])
-        st.progress(puntos/6)
-        if puntos == 6: st.balloons(); st.success("🚀 ¡Nivel Maestro!")
-        st.divider()
-        st.subheader("🏆 Desafío del Capi")
-        st.info("Aquí aparecerán las 100 situaciones próximamente.")
+# Sección de Reflexión (Bitácora)
+st.subheader("📝 Bitácora de Observación del Estudiante")
+st.write("Antes de pasar al siguiente reto, completa tu bitácora de investigador:")
+
+# Campos de la bitácora
+observacion = st.text_area("¿Qué sucedió cuando intentaste 'hackear' el modelo?", 
+                           placeholder="Ejemplo: La IA falló cuando usé la mano izquierda...")
+
+if observacion:
+    st.success("✅ ¡Bitácora registrada! Tus observaciones son clave para mejorar la IA.")
+    st.balloons() # ¡Pequeño premio visual por documentar!
+
+st.markdown("---")
+st.caption("Plataforma de Investigación en IA - Capi 2026")
+# --- PESTAÑA 4: TALLER DE PROMPTS ---
+    with tabs[3]: 
+        st.header("🎯 Laboratorio de Ingeniería de Prompts")
+        st.write("Escribe un prompt efectivo siguiendo la metodología de los 6 pasos.")
+
+        col1, col2 = st.columns([1, 1])
+
+        with col1:
+            st.subheader("📝 Tu Borrador")
+            user_prompt = st.text_area("Escribe tu prompt aquí:", 
+                                       placeholder="Ej: Actúa como un experto en...", 
+                                       height=250,
+                                       key="area_prompt") # Key única para evitar errores
+            
+            st.subheader("✅ Checklist de Calidad")
+            c1 = st.checkbox("01. ¿Asignaste un ROL?")
+            c2 = st.checkbox("02. ¿Solicitaste la TAREA?")
+            c3 = st.checkbox("03. ¿Diste CONTEXTO?")
+            c4 = st.checkbox("04. ¿Estableciste FORMATO?")
+            c5 = st.checkbox("05. ¿Diste DATOS ADICIONALES?")
+            c6 = st.checkbox("06. ¿Solicitaste PREGUNTAS?")
+
+        with col2:
+            st.subheader("📊 Nivel del Prompt")
+            puntos = sum([c1, c2, c3, c4, c5, c6])
+            progreso = puntos / 6
+            st.progress(progreso)
+            
+            if puntos == 6:
+                st.balloons()
+                st.success("🚀 **¡Nivel Maestro!** Tu prompt es altamente efectivo.")
+            elif puntos > 0:
+                st.info(f"Llevas {puntos} de 6 pasos completados. ¡Sigue así!")
+            else:
+                st.warning("Comienza a marcar los pasos para ver tu progreso.")
+
+            # Espacio para los retos que generaremos
+            st.markdown("---")
+            st.subheader("🏆 Desafío del Capi")
+            st.info("Aquí aparecerán las 100 situaciones que estamos preparando.")
