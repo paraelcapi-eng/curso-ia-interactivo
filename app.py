@@ -195,13 +195,29 @@ with tabs[1]:
         st.balloons()
 
 # --- PESTAÑA 2: GLOSARIO ---
-with tabs[2]:
-    st.header("📖 Conceptos Clave")
-    st.write({
-        "Dataset": "Ejemplos (fotos/audios) para enseñar a la IA.",
-        "Inferencia": "Cuando la IA 'adivina' basándose en su entrenamiento.",
-        "Sesgo": "Error donde la IA favorece un resultado por falta de datos variados."
-    })
+with tabs[2]: 
+    st.header("📖 Conceptos que debes dominar")
+    st.write("Usa este glosario para entender el lenguaje técnico de los investigadores de IA.")
+    
+    st.divider()
+
+    # Definimos los conceptos
+    glosario = {
+        "🎯 Dataset": "El conjunto de ejemplos (fotos, audios o textos) que usas para enseñar a la IA. Entre más variado sea tu dataset, más inteligente será tu modelo.",
+        "🏷️ Clase": "Es cada una de las categorías que la IA debe aprender a distinguir (ejemplo: 'Gato' vs 'Perro').",
+        "🧠 Inferencia": "El momento en que la IA 'adivina' o predice qué está viendo basándose en lo que aprendió durante el entrenamiento.",
+        "⚠️ Sesgo (Bias)": "Un error sistemático donde la IA favorece un resultado sobre otro, generalmente porque el Dataset no fue lo suficientemente variado.",
+        "📉 Precisión (Accuracy)": "El porcentaje de aciertos que tiene tu modelo al probarlo con datos nuevos.",
+        "🤖 Modelo": "Es el 'cerebro' resultante después de procesar el Dataset. Es el archivo que exportas desde Teachable Machine.",
+        "🏗️ Epochs (Épocas)": "Cuántas veces el algoritmo de entrenamiento revisa el dataset completo. Más no siempre es mejor.",
+        "🔍 Overfitting": "Cuando la IA memoriza los datos en lugar de aprender. Falla cuando le muestras algo ligeramente diferente."
+    }
+
+    # Lo mostramos con un formato elegante
+    for termino, definicion in glosario.items():
+        st.markdown(f"### {termino}")
+        st.write(definicion)
+        st.divider()
 
 # --- PESTAÑA 3: TALLER DE PROMPTS ---
 with tabs[3]:
