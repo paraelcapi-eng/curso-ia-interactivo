@@ -228,12 +228,20 @@ with tabs[2]:
         st.write(definicion)
         st.divider()
 
-# --- PESTAÑA 3: TALLER DE PROMPTS ---
 with tabs[3]: 
     st.header("🎯 Laboratorio de Ingeniería de Prompts")
-    st.write("Escribe tu prompt completo y presiona el botón para auditar su calidad.")
+    
+    # --- SELECTOR DE MISIÓN DE PROMPT ---
+    st.subheader("🏆 Desafío de Escritura")
+    mision_eleccion = st.selectbox("Elige una situación para practicar:", list(diccionario_prompts.keys()))
+    
+    with st.container(border=True):
+        st.write("**Tu Misión:**")
+        st.info(diccionario_prompts[mision_eleccion])
+    
+    st.divider()
 
-    # --- MOTOR DE VALIDACIÓN (DENTRO DE LA PESTAÑA) ---
+    # --- LÓGICA DE VALIDACIÓN ---
     def validar_prompt(texto):
         texto = texto.lower()
         pistas = {
@@ -250,44 +258,37 @@ with tabs[3]:
 
     with col_p1:
         st.subheader("📝 Tu Borrador")
-        user_prompt = st.text_area("Escribe tu prompt aquí:", 
-                                   placeholder="Ej: Actúa como un experto en...", 
+        user_prompt = st.text_area("Escribe tu prompt aquí tratando de cumplir con los 6 pasos:", 
+                                   placeholder="Escribe aquí...", 
                                    height=300, 
                                    key="prompt_validador")
         
-        # EL BOTÓN DE ACCIÓN
         boton_validar = st.button("🚀 VALIDA TU PROMPT")
 
     with col_p2:
         st.subheader("📊 Informe de Auditoría")
         
-        # Solo se ejecuta la lógica si el botón fue presionado y hay texto
         if boton_validar and user_prompt:
             resultados = validar_prompt(user_prompt)
             
-            # Dibujamos los checks basados en el resultado
-            v1 = st.checkbox("01. ROL detectado 🎭", value=resultados["rol"], disabled=True)
-            v2 = st.checkbox("02. TAREA detectada 📝", value=resultados["tarea"], disabled=True)
-            v3 = st.checkbox("03. CONTEXTO detectado 🌍", value=resultados["contexto"], disabled=True)
-            v4 = st.checkbox("04. FORMATO detectado 📐", value=resultados["formato"], disabled=True)
-            v5 = st.checkbox("05. DATOS detectados 📊", value=resultados["datos"], disabled=True)
-            v6 = st.checkbox("06. PREGUNTAS detectadas ❓", value=resultados["preguntas"], disabled=True)
+            # Checks visuales
+            st.checkbox("01. ROL detectado 🎭", value=resultados["rol"], disabled=True)
+            st.checkbox("02. TAREA detectada 📝", value=resultados["tarea"], disabled=True)
+            st.checkbox("03. CONTEXTO detectado 🌍", value=resultados["contexto"], disabled=True)
+            st.checkbox("04. FORMATO detectado 📐", value=resultados["formato"], disabled=True)
+            st.checkbox("05. DATOS detectados 📊", value=resultados["datos"], disabled=True)
+            st.checkbox("06. PREGUNTAS detectadas ❓", value=resultados["preguntas"], disabled=True)
 
             puntos = sum(resultados.values())
             st.progress(puntos / 6)
 
             if puntos == 6:
-                st.success("🚀 **¡PROMPT MAESTRO!**")
+                st.success("🚀 ¡PROMPT MAESTRO COMPLETO!")
                 st.balloons()
             else:
                 faltantes = [p.upper() for p, v in resultados.items() if not v]
-                st.warning(f"Capi, falta integrar: {', '.join(faltantes)}")
-        
+                st.warning(f"Capi, para resolver esta misión falta: {', '.join(faltantes)}")
         elif boton_validar and not user_prompt:
-            st.error("⚠️ El prompt está vacío. ¡Escribe algo primero!")
+            st.error("⚠️ El prompt está vacío.")
         else:
-            st.info("Escribe tu propuesta a la izquierda y presiona el botón para ver el análisis.")
-
-    st.divider()
-    st.subheader("🏆 Desafío del Capi")
-    st.info("¿Listo para el siguiente nivel? Elige una situación de las 100 y supérala con 6/6 puntos.")
+            st.info("Lee la misión arriba, redacta tu prompt y presiona el botón.")
