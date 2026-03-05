@@ -286,8 +286,36 @@ with tabs[0]:
 with tabs[1]:
     st.header(f"🧪 Laboratorio: {seleccion}")
     
-    with st.expander("📖 ¿Cómo usar Teachable Machine?"):
-        st.markdown("Instrucciones de entrenamiento...")
+   # --- SECCIÓN DE AYUDA RÁPIDA (INSTRUCCIONES) ---
+with st.expander("📖 ¿Cómo usar Teachable Machine? (Guía Paso a Paso)"):
+    st.markdown("""
+    ### 🛠️ Guía para Entrenar tu IA
+    Sigue estos pasos en la pestaña de [Teachable Machine](https://teachablemachine.withgoogle.com/):
+    
+    1. **Crear Clases:** Ponle nombre a tus categorías (ej: 'Mano Abierta', 'Puño').
+    2. **Capturar Datos:** Mantén presionado el botón 'Hold to Record' para tomar fotos o audio. 
+       * *Tip de Pro:* Toma al menos **50 muestras** variando ángulos y distancias.
+    3. **Entrenar (Train):** Haz clic en 'Train Model'. **No cambies de pestaña** mientras carga, ¡ten paciencia!
+    4. **Exportar (Export):** * Ve al botón **'Export Model'**.
+       * Selecciona la pestaña **'Tensorflow.js'**.
+       * Haz clic en el botón azul **'Upload my model'** (Cargar mi modelo).
+    5. **Copiar Link:** Una vez cargado, aparecerá un link tipo `https://teachablemachine.withgoogle.com/models/XXXX/`. 
+    
+    **¡Ese es el link que debes pegar aquí abajo en la Arena de Pruebas!**
+    """)
+    st.image("https://teachablemachine.withgoogle.com/assets/img/content/home/home-hero-visual.png", caption="Flujo de trabajo en Teachable Machine")
+
+with st.sidebar:
+    st.header("📖 Listado de Retos")
+    seleccion = st.selectbox("Elige tu ejercicio:", list(diccionario_retos.keys()))
+    st.divider()
+    st.write("**Instrucción del Reto:**")
+    st.info(diccionario_retos[seleccion])
+
+st.subheader(f"Trabajando en: {seleccion}")
+st.write("1. Ve a [Teachable Machine](https://teachablemachine.withgoogle.com/) y entrena tu modelo.")
+st.write("2. Exporta el modelo como 'Update Cloud Model' y copia el link.")
+
 
     # Entrada de URL y Lógica del botón
     url_modelo = st.text_input("Pega aquí el enlace de tu modelo (URL):", key="url_tm")
