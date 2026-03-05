@@ -48,7 +48,7 @@ if st.sidebar.button("Cerrar Sesión"):
 # ...
 
 # --- MENÚ DE NAVEGACIÓN PRINCIPAL ---
-tabs = st.tabs(["🏠 Inicio", "🚀 Laboratorio de 100 Retos", "📚 Glosario IA"])
+tabs = st.tabs(["🏠 Inicio", "🚀 Laboratorio de 100 Retos", "📚 Glosario IA", "🎯 Taller de Prompts"])
 
 with tabs[0]: # Pestaña de Inicio
     st.title("🤖 ¡Bienvenido(a) al curso de Inteligencia Artificial")
