@@ -220,29 +220,64 @@ with tabs[2]:
         st.divider()
 
 # --- PESTAÑA 3: TALLER DE PROMPTS ---
-with tabs[3]:
+with tabs[3]: 
     st.header("🎯 Laboratorio de Ingeniería de Prompts")
+    st.write("Escribe tu prompt y el sistema validará automáticamente si cumples con los 6 pasos esenciales.")
+
+    # --- MOTOR DE VALIDACIÓN ---
+    def validar_prompt(texto):
+        texto = texto.lower()
+        # Diccionario de pistas para cada paso
+        pistas = {
+            "rol": ["eres", "actúa como", "expert", "especialista", "asistente", "profesor", "tienes el rol"],
+            "tarea": ["crea", "haz", "escribe", "genera", "redacta", "analiza", "diseña", "dame"],
+            "contexto": ["para", "público", "audiencia", "situación", "contexto", "caso de", "debido a"],
+            "formato": ["en una tabla", "lista", "bullet points", "párrafos", "formato", "markdown", "csv"],
+            "datos": ["usa esta información", "estos datos", "siguiendo esto:", "detalles:", "referencia:"],
+            "preguntas": ["pregúntame", "hazme preguntas", "si falta algo", "antes de terminar", "consulta"]
+        }
+        
+        # Verificamos cada paso
+        checks = {paso: any(pista in texto for pista in lista) for paso, lista in pistas.items()}
+        return checks
+
     col_p1, col_p2 = st.columns([1, 1])
-    
+
     with col_p1:
         st.subheader("📝 Tu Borrador")
-        user_prompt = st.text_area("Escribe tu prompt aquí:", height=250, key="prompt_area")
-        st.subheader("✅ Checklist de Calidad")
-        c1 = st.checkbox("01. Asignar un ROL")
-        c2 = st.checkbox("02. Solicitar TAREA")
-        c3 = st.checkbox("03. Dar CONTEXTO")
-        c4 = st.checkbox("04. Establecer FORMATO")
-        c5 = st.checkbox("05. Datos ADICIONALES")
-        c6 = st.checkbox("06. Solicitar PREGUNTAS")
+        user_prompt = st.text_area("Escribe tu prompt aquí:", 
+                                   placeholder="Ej: Eres un experto en cocina (Rol). Crea una receta (Tarea)...", 
+                                   height=300, 
+                                   key="prompt_validador")
+        
+        # Ejecutar validación automática
+        resultados = validar_prompt(user_prompt) if user_prompt else {k: False for k in ["rol", "tarea", "contexto", "formato", "datos", "preguntas"]}
 
     with col_p2:
-        st.subheader("📊 Nivel del Prompt")
-        puntos = sum([c1, c2, c3, c4, c5, c6])
-        st.progress(puntos / 6)
-        if puntos == 6:
-            st.balloons()
-            st.success("🚀 ¡Nivel Maestro!")
+        st.subheader("📊 Análisis Automático")
         
-        st.divider()
-        st.subheader("🏆 Desafío del Capi")
-        st.info("Selecciona una de las 100 situaciones que cargaremos a continuación.")
+        # Mostrar los checks bloqueados (el usuario no los puede marcar, el sistema lo hace)
+        v1 = st.checkbox("01. ROL detectado 🎭", value=resultados["rol"], disabled=True)
+        v2 = st.checkbox("02. TAREA detectada 📝", value=resultados["tarea"], disabled=True)
+        v3 = st.checkbox("03. CONTEXTO detectado 🌍", value=resultados["contexto"], disabled=True)
+        v4 = st.checkbox("04. FORMATO detectado 📐", value=resultados["formato"], disabled=True)
+        v5 = st.checkbox("05. DATOS detectados 📊", value=resultados["datos"], disabled=True)
+        v6 = st.checkbox("06. PREGUNTAS detectadas ❓", value=resultados["preguntas"], disabled=True)
+
+        # Cálculo de puntaje
+        puntos = sum(resultados.values())
+        st.progress(puntos / 6)
+
+        if puntos == 6:
+            st.success("🚀 **¡PROMPT MAESTRO!** Has cumplido con todos los parámetros de ingeniería.")
+            st.balloons()
+        elif user_prompt:
+            faltantes = [p for p, v in resultados.items() if not v]
+            st.warning(f"Capi, tu prompt es bueno, pero le falta: **{', '.join(faltantes).upper()}**")
+        else:
+            st.info("Escribe algo a la izquierda para iniciar el escaneo.")
+
+    st.divider()
+    st.subheader("🏆 Desafío de Práctica")
+    # Aquí irán las 100 situaciones
+    st.info("Selecciona una situación y trata de que todos los checks se pongan en verde.")
