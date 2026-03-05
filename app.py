@@ -287,6 +287,11 @@ with tabs[1]:
     st.header(f"🧪 Laboratorio: {seleccion}")
     
    # --- SECCIÓN DE AYUDA RÁPIDA (INSTRUCCIONES) ---
+# --- INTERFAZ DE USUARIO ---
+st.title("🚀 Cusro IA : Panel de Control")
+st.markdown("---")
+
+# --- SECCIÓN DE AYUDA RÁPIDA (INSTRUCCIONES) ---
 with st.expander("📖 ¿Cómo usar Teachable Machine? (Guía Paso a Paso)"):
     st.markdown("""
     ### 🛠️ Guía para Entrenar tu IA
@@ -316,22 +321,29 @@ st.subheader(f"Trabajando en: {seleccion}")
 st.write("1. Ve a [Teachable Machine](https://teachablemachine.withgoogle.com/) y entrena tu modelo.")
 st.write("2. Exporta el modelo como 'Update Cloud Model' y copia el link.")
 
+# --- ENTRADA DEL MODELO ---
+st.subheader("🔗 Entrega de Resultados")
 
-    # Entrada de URL y Lógica del botón
-    url_modelo = st.text_input("Pega aquí el enlace de tu modelo (URL):", key="url_tm")
-    if url_modelo:
-        st.success("🎯 ¡Modelo detectado!")
-        st.link_button("🚀 INICIAR PRUEBA DE CAMPO", url_modelo)
-    else:
-        st.warning("⚠️ Pega el enlace arriba para activar la prueba.")
+# Caja para que el alumno pegue su URL
+url_modelo = st.text_input("Pega aquí el enlace de tu modelo (URL):", 
+                           placeholder="https://teachablemachine.withgoogle.com/models/...")
 
-    st.divider()
-    # Bitácora (Dentro de la pestaña 1)
-    st.subheader("📝 Bitácora de Observación")
-    observacion = st.text_area("¿Qué sucedió al hackear el modelo?", key="bitacora")
-    if st.button("Registrar Observación"):
-        st.success("✅ ¡Bitácora registrada!")
-        st.balloons()
+# --- LÓGICA DE ACTIVACIÓN (Aquí va lo que preguntaste) ---
+if url_modelo:
+    # Si el alumno ya pegó algo, mostramos el éxito y el botón
+    st.success("🎯 ¡Modelo detectado y listo para evaluación!")
+    st.link_button("🚀 INICIAR PRUEBA DE CAMPO", url_modelo)
+else:
+    # Si la caja está vacía, mostramos tu mensaje de guía
+    st.warning("⚠️ Pega el enlace de tu modelo arriba para activar los sensores de prueba.")
+
+st.markdown("---")
+# Pie de página opcional
+st.info("💡 Tip: Recuerda que el modelo debe estar publicado como 'Tensorflow.js' en Teachable Machine.")
+
+st.markdown("---")
+st.caption("Plataforma de capacitación técnica ")
+
 
 # --- PESTAÑA 2: GLOSARIO ---
 with tabs[2]:
